@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Inicio - SGR La Serena{% endblock %}
+
+{% block contenido %}
+<div class="row align-items-center mb-5">
+    <div class="col-md-8">
+        <h1 class="display-4 fw-bold text-dark">Portal de Gestión Territorial SGR</h1>
+        <p class="lead text-muted">
+            Capital regional de La Serena. Población estimada de {{ habitantes }}
+            habitantes ({{ urbanos_pct }} urbanos y {{ rurales_pct }} rurales).
+        </p>
+    </div>
+</div>
+
+<div class="alert alert-secondary">
+    <!-- TODO (compañero): reemplazar este placeholder por el listado real de
+         funcionarios (tarjetas con nombre, cargo, delegación, meta/avance y
+         link a la ficha personal con el semáforo), según el blueprint. -->
+    Módulo de Gestión Territorial en desarrollo.
+</div>
+{% endblock %}

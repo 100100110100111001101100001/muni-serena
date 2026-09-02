@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Resumen Colectivo - SGR{% endblock %}
+
+{% block contenido %}
+<h1 class="fw-bold mb-2">Resumen Colectivo y Rendimiento Global</h1>
+<p class="text-muted mb-5">Porcentaje de cumplimiento de la totalidad de compromisos adquiridos por la delegación.</p>
+
+<div class="row mb-5 text-center">
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm bg-primary text-white p-4">
+            <h3>{{ total }}</h3>
+            <p class="mb-0">Compromisos Totales</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm bg-success text-white p-4">
+            <h3>{{ realizados }}</h3>
+            <p class="mb-0">Realizados con Éxito</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm bg-warning text-dark p-4">
+            <h3>{{ pendientes }}</h3>
+            <p class="mb-0">Pendientes de Gestión</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h4 class="fw-bold mb-4">Meta Colectiva del Equipo</h4>
+                <p>La normativa municipal establece que las delegaciones deben operar con un umbral colectivo mínimo del <strong>80.00%</strong> de compromisos cerrados.</p>
+
+                <div class="progress mb-3" style="height: 35px;">
+                    <div class="progress-bar {% if alert %}bg-danger{% else %}bg-success{% endif %}" role="progressbar" style="width: {{ porcentaje }}%;" aria-valuenow="{{ porcentaje }}" aria-valuemin="0" aria-valuemax="100">
+                        {{ porcentaje }}%
+                    </div>
+                </div>
+
+                {% if alert %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>¡Atención Directores!</strong> El porcentaje de cumplimiento colectivo está bajo la meta del 80%. Es prioritario realizar acompañamientos a los equipos territoriales con retrasos.
+                </div>
+                {% else %}
+                <div class="alert alert-success" role="alert">
+                    <strong>¡Buen Trabajo!</strong> El equipo territorial se encuentra sobre el umbral mínimo del 80%. Mantengan el ritmo de cierre de requerimientos.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-dark text-white">
+                <h5 class="card-title mb-0">Listado de Requerimientos Ciudadanos</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    {% for c in compromisos %}
+                    <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-start border-0 border-bottom px-0">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold text-dark">{{ c.vecino_solicitante }}</div>
+                            <span class="small text-muted d-block">{{ c.territorio }} &bull; Fecha: {{ c.fecha_compromiso }}</span>
+                        </div>
+                        <span class="badge {% if c.estado == 'Realizado' %}bg-success{% else %}bg-warning text-dark{% endif %} rounded-pill">{{ c.estado }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
