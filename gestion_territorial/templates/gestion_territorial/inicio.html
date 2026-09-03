@@ -8,16 +8,75 @@
     <div class="col-md-8">
         <h1 class="display-4 fw-bold text-dark">Portal de Gestión Territorial SGR</h1>
         <p class="lead text-muted">
-            Capital regional de La Serena. Población estimada de {{ habitantes }}
-            habitantes ({{ urbanos_pct }} urbanos y {{ rurales_pct }} rurales).
+            Capital regional de La Serena. Una comuna con una población estimada de {{ habitantes }}
+            habitantes ({{ urbanos_pct }} urbanos y {{ rurales_pct }} rurales), impulsada por una
+            gestión descentralizada a través de sus delegaciones.
         </p>
     </div>
 </div>
 
-<div class="alert alert-secondary">
-    <!-- TODO (compañero): reemplazar este placeholder por el listado real de
-         funcionarios (tarjetas con nombre, cargo, delegación, meta/avance y
-         link a la ficha personal con el semáforo), según el blueprint. -->
-    Módulo de Gestión Territorial en desarrollo.
+<h3 class="mb-2">Funcionarios y Monitoreo del Semáforo</h3>
+<p class="text-muted">Filtra por delegación para revisar el avance trimestral de cada funcionario.</p>
+
+<!-- Filtros dinamicos por delegacion (JS puro, sin recargar) -->
+<div class="btn-group btn-group-sm mb-4 flex-wrap" role="group" aria-label="Filtrar por delegación" id="filtroDelegaciones">
+    <button type="button" class="btn btn-outline-secondary active" data-delegacion="todas">Todas</button>
+    {% for d in delegaciones %}
+    <button type="button" class="btn btn-outline-secondary" data-delegacion="{{ d }}">{{ d }}</button>
+    {% endfor %}
 </div>
+
+<div class="row" id="tarjetasFuncionarios">
+    {% for f in funcionarios %}
+    <div class="col-md-4 mb-4 tarjeta-funcionario" data-delegacion="{{ f.delegacion }}">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">{{ f.nombre }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ f.cargo }}</h6>
+                <span class="badge bg-secondary mb-3">Delegación: {{ f.delegacion }}</span>
+                <p class="card-text mb-1"><strong>Meta Trimestral:</strong> {{ f.meta_trimestre }} atenciones</p>
+                <p class="card-text"><strong>Avance Realizado:</strong> {{ f.avance_actual }} atenciones</p>
+
+                <div class="progress mb-1" style="height: 12px;">
+                    <div class="progress-bar {% if f.pct_avance >= 100 %}bg-success{% elif f.pct_avance >= 60 %}bg-info{% else %}bg-warning{% endif %}"
+                         role="progressbar"
+                         style="width: {{ f.pct_avance }}%;"
+                         aria-valuenow="{{ f.pct_avance }}" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                </div>
+                <small class="text-muted">{{ f.pct_avance }}% de la meta trimestral</small>
+            </div>
+            <div class="card-footer bg-transparent border-top-0">
+                <a href="{% url 'gestion_territorial:ficha' f.id %}" class="btn btn-outline-primary btn-sm w-100">Ver Ficha y Semáforo Diario</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-secondary">No hay funcionarios registrados.</div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    // Filtro dinamico de tarjetas por delegacion (JS puro, sin recargar la pagina)
+    (function () {
+        const botones = document.querySelectorAll('#filtroDelegaciones button');
+        const tarjetas = document.querySelectorAll('.tarjeta-funcionario');
+
+        botones.forEach(function (boton) {
+            boton.addEventListener('click', function () {
+                botones.forEach(function (b) { b.classList.remove('active'); });
+                boton.classList.add('active');
+
+                const delegacion = boton.getAttribute('data-delegacion');
+                tarjetas.forEach(function (tarjeta) {
+                    const coincide = delegacion === 'todas' ||
+                        tarjeta.getAttribute('data-delegacion') === delegacion;
+                    tarjeta.style.display = coincide ? '' : 'none';
+                });
+            });
+        });
+    })();
+</script>
 {% endblock %}
