@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Ficha de Desempeño - {{ funcionario.nombre }}{% endblock %}
+
+{% block contenido %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'gestion_territorial:inicio' %}">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ funcionario.nombre }}</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-5 mb-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h2 class="card-title fw-bold mb-1">{{ funcionario.nombre }}</h2>
+                <h5 class="text-primary mb-3">{{ funcionario.cargo }}</h5>
+                <p class="text-muted"><strong class="text-dark">Delegación Territorial:</strong> {{ funcionario.delegacion }}</p>
+                <hr>
+                <h5 class="fw-bold mb-3">Lógica del Semáforo al Día Actual</h5>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        Días Computables Transcurridos
+                        <span class="badge bg-dark rounded-pill">{{ dias_transcurridos }} de {{ dias_totales }} días</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        Meta Acumulada Esperada al Día
+                        <span class="badge bg-secondary rounded-pill">{{ meta_esperada_hoy }}%</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        Cumplimiento Real del Trimestre
+                        <span class="badge bg-primary rounded-pill">{{ cumplimiento }}%</span>
+                    </li>
+                </ul>
+                <div class="alert alert-{{ color_semaforo }} text-center fw-bold shadow-sm" role="alert" id="estadoSemaforo">
+                    Estado Semáforo: {{ texto_semaforo }}
+                </div>
+
+                <!-- Simulador visual del semaforo (demo, sin persistencia) -->
+                <div class="border-top pt-3">
+                    <label for="sliderAvance" class="form-label small text-muted fw-bold">
+                        Simular avance actual (demo visual, no se guarda):
+                    </label>
+                    <input type="range" class="form-range" id="sliderAvance" min="0" max="100" value="{{ cumplimiento }}">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">Cumplimiento simulado:</small>
+                        <span class="badge bg-dark rounded-pill" id="valorSlider">{{ cumplimiento }}%</span>
+                    </div>
+                    <p class="small text-muted mt-2 mb-0" id="resultadoSlider"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-7">
+        <div class="card shadow-sm">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Detalle de Metas e Ítems de Medición</h5>
+                <button class="btn btn-sm btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#detalleItems" aria-expanded="true" aria-controls="detalleItems">
+                    Expandir / Contraer
+                </button>
+            </div>
+            <div id="detalleItems" class="collapse show">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Ítem de Gestión</th>
+                                    <th class="text-center">Ponderación</th>
+                                    <th class="text-center">Meta</th>
+                                    <th class="text-center">Avance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in funcionario.items_medicion %}
+                                <tr>
+                                    <td>{{ item.item }}</td>
+                                    <td class="text-center fw-bold">{{ item.ponderador }}%</td>
+                                    <td class="text-center">{{ item.meta }}</td>
+                                    <td class="text-center bg-light">{{ item.avance }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simulador visual del semaforo diario (JS puro + Bootstrap, sin backend de escritura)
+    (function () {
+        const slider = document.getElementById('sliderAvance');
+        const valor = document.getElementById('valorSlider');
+        const alerta = document.getElementById('estadoSemaforo');
+        const resultado = document.getElementById('resultadoSlider');
+        const metaEsperada = {{ meta_esperada_hoy }};
+
+        function actualizar() {
+            const cumplimiento = parseInt(slider.value, 10);
+            valor.textContent = cumplimiento + '%';
+
+            let color, texto;
+            if (cumplimiento >= metaEsperada) {
+                color = 'success';
+                texto = 'Cumplimiento al día';
+            } else if (cumplimiento >= metaEsperada * 0.60) {
+                color = 'warning';
+                texto = 'Cumplimiento en riesgo';
+            } else {
+                color = 'danger';
+                texto = 'Cumplimiento atrasado';
+            }
+
+            // Reemplaza las clases de color de la alerta de Bootstrap
+            alerta.classList.remove('alert-success', 'alert-warning', 'alert-danger');
+            alerta.classList.add('alert-' + color);
+            alerta.innerHTML = 'Estado Semáforo: ' + texto;
+
+            const rangoMin = Math.round(metaEsperada * 0.60 * 10) / 10;
+            resultado.textContent = 'Verde si ≥ ' + metaEsperada + '% · Ámbar si ≥ ' + rangoMin + '% · Rojo bajo ese umbral.';
+        }
+
+        slider.addEventListener('input', actualizar);
+        actualizar();
+    })();
+</script>
+{% endblock %}
