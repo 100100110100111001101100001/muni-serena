@@ -5,47 +5,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block titulo %}SGR La Serena 2026{% endblock %}</title>
-    <!-- Bootstrap local, sin CDN -->
+    <!-- Bootstrap CSS Local -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand img {
+            max-height: 40px;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
 
+    <!-- Navbar Responsivo -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="{% url 'gestion_territorial:inicio' %}">
-                <img src="{% static 'img/logo_municipal.png' %}" alt="Logo Municipal" height="40" class="me-2">
-                <strong>SGR La Serena 2026</strong>
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'inicio' %}">
+                <img src="{% static 'img/logo_municipal.png' %}" alt="Logo Municipalidad" class="me-2">
+                <span class="fw-bold">SGR La Serena</span>
             </a>
-            <button class="navbar-brand navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navSGR">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navSGR">
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'gestion_territorial:inicio' %}">Inicio</a>
+                        <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'agenda_colectiva:tablero' %}">Tubo de Trabajo (Kanban)</a>
+                        <a class="nav-link" href="{% url 'ficha_personal' 1 %}">Ficha Personal (María)</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'agenda_colectiva:resumen' %}">Resumen Colectivo</a>
+                        <a class="nav-link" href="{% url 'ficha_personal' 2 %}">Ficha Personal (Alberto)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-white rounded px-3" href="{% url 'tubo_tablero' %}">Tubo Kanban</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <main class="container">
+    <!-- Contenido Principal -->
+    <div class="container">
         {% block contenido %}
         {% endblock %}
-    </main>
+    </div>
 
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <div class="container">
-            <small>&copy; 2026 Ilustre Municipalidad de La Serena. Sistema de Gestión de Requerimientos (SGR). Desarrollado para Programación Back End.</small>
+    <footer class="bg-white text-center py-4 mt-5 border-top">
+        <div class="container text-muted">
+            <p class="mb-1">© 2026 Municipalidad de La Serena - Sistema de Gestión de Requerimientos (SGR)</p>
+            <small>Desarrollado de forma local para Programación Back End - Inacap La Serena</small>
         </div>
     </footer>
 
+    <!-- Bootstrap JS Bundle Local -->
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

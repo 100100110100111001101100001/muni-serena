@@ -1,10 +1,9 @@
 from django.urls import path
 from . import views
 
-app_name = 'gestion_territorial'
+# Sin app_name: el blueprint nuevo usa nombres de URL planos (ver base.html)
 
 urlpatterns = [
     path('', views.vista_inicio, name='inicio'),
-    # TODO (compañero): agregar la ruta de la ficha personal, ej:
-    # path('funcionario/<int:id_funcionario>/', views.vista_ficha_personal, name='ficha'),
+    path('ficha/<int:funcionario_id>/', views.vista_ficha_personal, name='ficha_personal'),
 ]
