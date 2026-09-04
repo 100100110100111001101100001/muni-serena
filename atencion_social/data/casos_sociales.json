@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "rut_vecino": "12.345.678-9",
+    "nombre_vecino": "Héctor Valenzuela",
+    "direccion": "Sectores Altos de La Antena",
+    "telefono": "+56955554444",
+    "atenciones": [
+      {
+        "etapa": 1,
+        "fecha": "2026-07-15",
+        "servicio": "Evaluación preliminar de vulnerabilidad y ficha CAS",
+        "observacion": "Se diagnostica urgencia de subsidio habitacional.",
+        "resultado": "Completado"
+      },
+      {
+        "etapa": 2,
+        "fecha": "2026-08-01",
+        "servicio": "Asesoría para postulación de subsidios estatales",
+        "observacion": "Se asiste con entrega de documentos oficiales y cartas de respaldo.",
+        "resultado": "Completado"
+      }
+    ]
+  }
+]

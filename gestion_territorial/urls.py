@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'gestion_territorial'
+# Sin app_name: el blueprint nuevo usa nombres de URL planos (ver base.html)
 
 urlpatterns = [
     path('', views.vista_inicio, name='inicio'),

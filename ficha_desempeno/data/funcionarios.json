@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "nombre": "María Fonseca Palma",
+    "cargo": "Territorial OO.CC.",
+    "delegacion": "Rural",
+    "meta_trimestre": 100,
+    "avance_actual": 45,
+    "items": [
+      {"nombre": "Reuniones con juntas de vecinos", "meta": 40, "avance": 25, "ponderador": 50},
+      {"nombre": "Gestión de solicitudes de terreno", "meta": 60, "avance": 20, "ponderador": 50}
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Alberto Barrientos",
+    "cargo": "Coordinador de Servicios Comunitarios",
+    "delegacion": "Centro",
+    "meta_trimestre": 80,
+    "avance_actual": 62,
+    "items": [
+      {"nombre": "Supervisión de cuadrillas de aseo", "meta": 80, "avance": 62, "ponderador": 100}
+    ]
+  },
+  {
+    "id": 3,
+    "nombre": "Débora Cortés Rojas",
+    "cargo": "Gestor Social",
+    "delegacion": "Las Compañías",
+    "meta_trimestre": 120,
+    "avance_actual": 30,
+    "items": [
+      {"nombre": "Fichas de caracterización social", "meta": 120, "avance": 30, "ponderador": 100}
+    ]
+  }
+]

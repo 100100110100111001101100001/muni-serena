@@ -1,46 +1,22 @@
 [
   {
-    "id_compromiso": "COMP-2026-001",
-    "vecino_solicitante": "Aldo Mine",
-    "telefono": "+569 1234 5678",
-    "territorio": "Las Terrazas del Brillador",
-    "descripcion": "Solicitud urgente de poda de árboles por corte e interferencia en cableado de alumbrado público.",
+    "id": 1,
+    "vecino": "Manuel Rojas Espejo",
+    "telefono": "+56912345678",
+    "territorio": "Centro",
+    "descripcion": "Solicitud de retiro de escombros en calle Balmaceda altura 400 por interferencia peatonal.",
     "estado": "En Proceso",
-    "fecha_compromiso": "2026-09-05",
-    "responsable_id": 1,
-    "nombre_responsable": "María Fonseca Palma"
+    "fecha_compromiso": "2026-09-10",
+    "responsable_id": 2
   },
   {
-    "id_compromiso": "COMP-2026-002",
-    "vecino_solicitante": "Alejandra Silva",
-    "telefono": "+569 8765 4321",
-    "territorio": "Avenida del Mar",
-    "descripcion": "Instalación de señalética de límite de velocidad vial cerca de zona residencial.",
+    "id": 2,
+    "vecino": "Clara Contreras",
+    "telefono": "+56987654321",
+    "territorio": "Rural",
+    "descripcion": "Solicitud de camión aljibe para sector El Romero por baja de presión severa.",
     "estado": "Ingresado",
     "fecha_compromiso": "2026-09-15",
-    "responsable_id": 2,
-    "nombre_responsable": "Alberto Barrientos"
-  },
-  {
-    "id_compromiso": "COMP-2026-003",
-    "vecino_solicitante": "Victoria Castillo",
-    "telefono": "+569 1122 3344",
-    "territorio": "La Antena Centro",
-    "descripcion": "Coordinación y entrega de canasta familiar y subsidio del Caso Social (Etapa 1 de 3).",
-    "estado": "Realizado",
-    "fecha_compromiso": "2026-08-25",
-    "responsable_id": 3,
-    "nombre_responsable": "Patricia Jiménez Rojas"
-  },
-  {
-    "id_compromiso": "COMP-2026-004",
-    "vecino_solicitante": "Clara Toledo",
-    "telefono": "+569 5566 7788",
-    "territorio": "Alfalfares Rural",
-    "descripcion": "Inspección de luminaria pública apagada en camino vecinal secundario.",
-    "estado": "Pendiente",
-    "fecha_compromiso": "2026-09-01",
-    "responsable_id": 1,
-    "nombre_responsable": "María Fonseca Palma"
+    "responsable_id": 1
   }
 ]
