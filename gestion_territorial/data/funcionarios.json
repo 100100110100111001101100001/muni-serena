@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "nombre": "María Fonseca Palma",
+    "cargo": "Territorial OO.CC.",
+    "delegacion": "Rural",
+    "meta_trimestre": 80,
+    "avance_actual": 48,
+    "items_medicion": [
+      {"item": "Reuniones de Juntas de Vecinos", "meta": 30, "avance": 18, "ponderador": 50},
+      {"item": "Gestión de solicitudes en Terreno", "meta": 50, "avance": 30, "ponderador": 50}
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Alberto Barrientos",
+    "cargo": "Coordinador de Servicios Comunitarios",
+    "delegacion": "Centro",
+    "meta_trimestre": 60,
+    "avance_actual": 12,
+    "items_medicion": [
+      {"item": "Supervisión de cuadrillas de aseo", "meta": 60, "avance": 12, "ponderador": 100}
+    ]
+  },
+  {
+    "id": 3,
+    "nombre": "Patricia Jiménez Rojas",
+    "cargo": "Gestor Social",
+    "delegacion": "La Antena",
+    "meta_trimestre": 50,
+    "avance_actual": 42,
+    "items_medicion": [
+      {"item": "Atención Social de Casos Complejos", "meta": 50, "avance": 42, "ponderador": 100}
+    ]
+  },
+  {
+    "id": 4,
+    "nombre": "Rodrigo Araya Cortés",
+    "cargo": "Inspector Territorial",
+    "delegacion": "Avenida del Mar",
+    "meta_trimestre": 90,
+    "avance_actual": 71,
+    "items_medicion": [
+      {"item": "Fiscalización de ferias libres", "meta": 45, "avance": 38, "ponderador": 50},
+      {"item": "Informes de terreno por denuncias", "meta": 45, "avance": 33, "ponderador": 50}
+    ]
+  },
+  {
+    "id": 5,
+    "nombre": "Camila Rojas Espinoza",
+    "cargo": "Coordinadora Territorial",
+    "delegacion": "Las Compañías",
+    "meta_trimestre": 70,
+    "avance_actual": 19,
+    "items_medicion": [
+      {"item": "Mesas de trabajo vecinales", "meta": 30, "avance": 9, "ponderador": 40},
+      {"item": "Seguimiento de requerimientos", "meta": 40, "avance": 10, "ponderador": 60}
+    ]
+  },
+  {
+    "id": 6,
+    "nombre": "Jorge Pizarro Vega",
+    "cargo": "Delegado Territorial",
+    "delegacion": "La Pampa",
+    "meta_trimestre": 55,
+    "avance_actual": 41,
+    "items_medicion": [
+      {"item": "Atención de dirigentes rurales", "meta": 25, "avance": 20, "ponderador": 50},
+      {"item": "Gestión de subsidios de vivienda", "meta": 30, "avance": 21, "ponderador": 50}
+    ]
+  }
+]
