@@ -16,6 +16,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gestion_territorial',
     'agenda_colectiva',
+    'atencion_social',
+    # NOTA: 'gestion_institucional' y 'ficha_desempeno' (apps de tu compañero,
+    # segun el blueprint de 4 apps) deben ser agregadas por el cuando cree
+    # esas carpetas con su urls.py/views.py — agregarlas antes rompe el
+    # proyecto porque Django no encontraria el modulo.
 ]
 
 MIDDLEWARE = [
@@ -59,3 +64,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # Carpeta global para Bootstrap local
 ]
+
+# Django usa 'error' por defecto para messages.error(), pero Bootstrap espera
+# 'alert-danger' (no existe 'alert-error'). Sin este mapeo los mensajes de
+# error no saldrian con el estilo rojo.
+from django.contrib.messages import constants as messages_constants
+MESSAGE_TAGS = {
+    messages_constants.ERROR: 'danger',
+}

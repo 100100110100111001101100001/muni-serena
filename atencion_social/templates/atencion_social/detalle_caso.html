@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block titulo %}Historial de {{ caso.nombre_vecino }}{% endblock %}
+{% block contenido %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h3>Historial del Caso: {{ caso.nombre_vecino }}</h3>
+        <p class="mb-1"><strong>RUT:</strong> {{ caso.rut_vecino }}</p>
+        <p class="mb-1"><strong>Dirección:</strong> {{ caso.direccion }}</p>
+        <p class="mb-3"><strong>Contacto:</strong> {{ caso.telefono }}</p>
+
+        <h4 class="mt-4">Gestiones Realizadas ({{ caso.atenciones|length }} de un máximo de 3)</h4>
+        <div class="timeline mt-3">
+            {% for atencion in caso.atenciones %}
+            <div class="card mb-3 border-start border-4 border-success">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="badge bg-success">Etapa {{ atencion.etapa }}</span>
+                        <span class="text-muted small"><strong>Fecha Registro:</strong> {{ atencion.fecha }}</span>
+                    </div>
+                    <p class="mb-1"><strong>Servicio:</strong> {{ atencion.servicio }}</p>
+                    <p class="mb-1"><strong>Observación:</strong> {{ atencion.observacion }}</p>
+                    <p class="mb-0"><strong>Estado:</strong> <span class="badge bg-info">{{ atencion.resultado }}</span></p>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-muted">No se han ingresado gestiones secuenciales para este caso.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card border-dark">
+            <div class="card-header bg-dark text-white">Ingresar Próxima Gestión</div>
+            <div class="card-body">
+                {% if limite_alcanzado %}
+                <div class="alert alert-danger my-0" role="alert">
+                    Se ha completado la secuencia máxima de 3 gestiones para este beneficiario de acuerdo con las reglas de negocio del SGR de La Serena. No es posible incorporar más etapas de atención.
+                </div>
+                {% else %}
+                <p class="text-muted small">Al registrar una atención, se añadirá automáticamente como la <strong>etapa {{ caso.atenciones|length|add:"1" }}</strong> vinculada a este caso.</p>
+                <form action="{% url 'agregar_atencion' caso.id %}" method="POST">
+                    {% csrf_token %}
+                    {{ form_atencion.as_p }}
+                    <button type="submit" class="btn btn-success w-100 mt-2">Guardar Gestión</button>
+                </form>
+                {% endif %}
+                <hr>
+                <a href="{% url 'lista_casos' %}" class="btn btn-outline-secondary w-100">Volver a la Lista de Casos</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

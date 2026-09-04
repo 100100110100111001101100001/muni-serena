@@ -42,6 +42,11 @@
                     <li class="nav-item">
                         <a class="nav-link bg-primary text-white rounded px-3" href="{% url 'tubo_tablero' %}">Tubo Kanban</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lista_casos' %}">Atención Social (Casos)</a>
+                    </li>
+                    <!-- TODO (compañero): agregar aca tu link cuando tengas
+                         la ruta 'ficha_personal_lista' de tu app ficha_desempeno -->
                 </ul>
             </div>
         </div>
@@ -49,6 +54,14 @@
 
     <!-- Contenido Principal -->
     <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
         {% block contenido %}
         {% endblock %}
     </div>

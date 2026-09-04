@@ -1,12 +1,18 @@
 from django.shortcuts import render, redirect
-from django.views.decorators.http import require_POST
-from .services import TuboTrabajoAPI
+from django.contrib import messages
+from .services import TuboTrabajoService
+from .forms import CompromisoForm
+from ficha_desempeno.services import FuncionariosService
 
 
 def vista_tubo_tablero(request):
-    compromisos = TuboTrabajoAPI.get_all_compromisos()
+    compromisos = TuboTrabajoService.get_all()
+    funcionarios = {f['id']: f['nombre'] for f in FuncionariosService.get_all()}
 
-    # Clasificacion por columna Kanban estilo Jira/Scrum
+    # Inyectar el nombre de funcionario responsable a cada compromiso
+    for c in compromisos:
+        c['responsable_nombre'] = funcionarios.get(c['responsable_id'], "No Asignado")
+
     kanban = {
         'ingresado': [c for c in compromisos if c['estado'] == 'Ingresado'],
         'pendiente': [c for c in compromisos if c['estado'] == 'Pendiente'],
@@ -14,59 +20,59 @@ def vista_tubo_tablero(request):
         'realizado': [c for c in compromisos if c['estado'] == 'Realizado'],
     }
 
-    # Lista estatica para asignaciones en el modal de creacion
-    funcionarios_disponibles = ["María Fonseca Palma", "Alberto Barrientos"]
-
-    # Calculo grupal de cumplimiento (meta minima exigida: 80%)
+    # Calcular meta de cumplimiento colectiva del SGR (Minimo 80% exigido)
     totales = len(compromisos)
     realizados = len(kanban['realizado'])
-    porcentaje_avance_colectivo = (realizados / totales * 100) if totales > 0 else 0
+    porcentaje_avance_comunal = (realizados / totales * 100) if totales > 0 else 100
 
     context = {
         'kanban': kanban,
-        'funcionarios': funcionarios_disponibles,
-        'cumplimiento_grupal': round(porcentaje_avance_colectivo, 1),
+        'avance_comunal': round(porcentaje_avance_comunal, 2),
+        'form': CompromisoForm()
     }
     return render(request, 'agenda_colectiva/tubo_tablero.html', context)
 
 
-@require_POST
 def vista_crear_compromiso(request):
-    solicitante = request.POST.get('vecino_solicitante')
-    telefono = request.POST.get('telefono')
-    territorio = request.POST.get('territorio')
-    descripcion = request.POST.get('descripcion')
-    fecha = request.POST.get('fecha_compromiso')
-    responsable = request.POST.get('responsable_nombre')
-
-    TuboTrabajoAPI.create_compromiso(solicitante, telefono, territorio, descripcion, fecha, responsable)
+    if request.method == 'POST':
+        form = CompromisoForm(request.POST)
+        if form.is_valid():
+            TuboTrabajoService.create(form.cleaned_data)
+            messages.success(request, "Nuevo compromiso insertado exitosamente en la Agenda Colectiva.")
+        else:
+            messages.error(request, "Error de validación en los datos del compromiso. Por favor, revise el formulario.")
     return redirect('tubo_tablero')
 
 
-@require_POST
-def vista_mover_compromiso(request):
-    id_comp = request.POST.get('id_compromiso')
-    nuevo_estado = request.POST.get('nuevo_estado')
+def vista_editar_compromiso(request, compromiso_id):
+    compromiso = TuboTrabajoService.get_by_id(compromiso_id)
+    if request.method == 'POST':
+        form = CompromisoForm(request.POST)
+        if form.is_valid():
+            TuboTrabajoService.update(compromiso_id, form.cleaned_data)
+            messages.success(request, f"Compromiso {compromiso_id} actualizado con éxito.")
+            return redirect('tubo_tablero')
+    else:
+        form = CompromisoForm(initial={
+            'vecino': compromiso['vecino'],
+            'telefono': compromiso['telefono'],
+            'territorio': compromiso['territorio'],
+            'descripcion': compromiso['descripcion'],
+            'fecha_compromiso': compromiso['fecha_compromiso'],
+            'responsable_id': compromiso['responsable_id']
+        })
+    return render(request, 'agenda_colectiva/editar_compromiso.html', {'form': form, 'compromiso_id': compromiso_id})
 
-    TuboTrabajoAPI.update_estado_compromiso(id_comp, nuevo_estado)
+
+def vista_eliminar_compromiso(request, compromiso_id):
+    TuboTrabajoService.delete(compromiso_id)
+    messages.warning(request, f"El compromiso {compromiso_id} ha sido borrado físicamente del JSON.")
     return redirect('tubo_tablero')
 
 
-def vista_resumen_colectivo(request):
-    """Ruta extra que no esta en el blueprint nuevo, se deja disponible igual"""
-    compromisos = TuboTrabajoAPI.get_all_compromisos()
-
-    total = len(compromisos)
-    realizados = len([c for c in compromisos if c['estado'] == 'Realizado'])
-    pendientes = total - realizados
-    pct_realizado = (realizados / total * 100) if total > 0 else 0
-
-    context = {
-        'compromisos': compromisos,
-        'total': total,
-        'realizados': realizados,
-        'pendientes': pendientes,
-        'porcentaje': round(pct_realizado, 2),
-        'alert': pct_realizado < 80.0,
-    }
-    return render(request, 'agenda_colectiva/resumen_colectivo.html', context)
+def vista_cambiar_estado(request, compromiso_id):
+    if request.method == 'POST':
+        nuevo_estado = request.POST.get('estado')
+        TuboTrabajoService.update_estado(compromiso_id, nuevo_estado)
+        messages.success(request, f"Estado del compromiso {compromiso_id} actualizado a {nuevo_estado}.")
+    return redirect('tubo_tablero')

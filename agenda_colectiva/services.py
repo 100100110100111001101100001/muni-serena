@@ -1,62 +1,79 @@
 import json
 import os
-import uuid
 from django.conf import settings
 
 
-class TuboTrabajoAPI:
-    """Simulador de API local con persistencia interactiva en JSON"""
-
+class TuboTrabajoService:
     @staticmethod
     def _get_path():
-        return os.path.join(settings.BASE_DIR, 'agenda_colectiva', 'data', 'tubo_trabajo.json')
+        data_dir = os.path.join(settings.BASE_DIR, 'agenda_colectiva', 'data')
+        os.makedirs(data_dir, exist_ok=True)
+        return os.path.join(data_dir, 'tubo_trabajo.json')
 
     @classmethod
-    def _load_json(cls):
+    def get_all(cls):
         path = cls._get_path()
         if not os.path.exists(path):
             return []
-        with open(path, 'r', encoding='utf-8') as file:
-            return json.load(file)
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
 
     @classmethod
-    def _save_json(cls, data):
-        path = cls._get_path()
-        with open(path, 'w', encoding='utf-8') as file:
-            json.dump(data, file, ensure_ascii=False, indent=2)
-
-    @classmethod
-    def get_all_compromisos(cls):
-        """Simula GET /api/compromisos"""
-        return cls._load_json()
-
-    @classmethod
-    def create_compromiso(cls, solicitante, telefono, territorio, descripcion, fecha, responsable):
-        """Simula POST /api/compromisos"""
-        compromisos = cls._load_json()
-        nuevo_id = f"COMP-2026-{str(uuid.uuid4().hex[:4]).upper()}"
-
-        nuevo_item = {
-            "id_compromiso": nuevo_id,
-            "vecino_solicitante": solicitante,
-            "telefono": telefono,
-            "territorio": territorio,
-            "descripcion": descripcion,
-            "estado": "Ingresado",
-            "fecha_compromiso": fecha,
-            "responsable_nombre": responsable
-        }
-        compromisos.append(nuevo_item)
-        cls._save_json(compromisos)
-        return nuevo_item
-
-    @classmethod
-    def update_estado_compromiso(cls, id_compromiso, nuevo_estado):
-        """Simula PATCH /api/compromisos/<id>"""
-        compromisos = cls._load_json()
+    def get_by_id(cls, tid):
+        compromisos = cls.get_all()
         for c in compromisos:
-            if c['id_compromiso'] == id_compromiso:
+            if c['id'] == int(tid):
+                return c
+        return None
+
+    @classmethod
+    def create(cls, data):
+        compromisos = cls.get_all()
+        new_id = max([c['id'] for c in compromisos]) + 1 if compromisos else 1
+        nuevo = {
+            "id": new_id,
+            "vecino": data['vecino'],
+            "telefono": data['telefono'],
+            "territorio": data['territorio'],
+            "descripcion": data['descripcion'],
+            "estado": "Ingresado",
+            "fecha_compromiso": str(data['fecha_compromiso']),
+            "responsable_id": int(data['responsable_id'])
+        }
+        compromisos.append(nuevo)
+        cls._save(compromisos)
+        return nuevo
+
+    @classmethod
+    def update(cls, tid, data):
+        compromisos = cls.get_all()
+        for c in compromisos:
+            if c['id'] == int(tid):
+                c['vecino'] = data['vecino']
+                c['telefono'] = data['telefono']
+                c['territorio'] = data['territorio']
+                c['descripcion'] = data['descripcion']
+                c['fecha_compromiso'] = str(data['fecha_compromiso'])
+                c['responsable_id'] = int(data['responsable_id'])
+                break
+        cls._save(compromisos)
+
+    @classmethod
+    def update_estado(cls, tid, nuevo_estado):
+        compromisos = cls.get_all()
+        for c in compromisos:
+            if c['id'] == int(tid):
                 c['estado'] = nuevo_estado
-                cls._save_json(compromisos)
-                return True
-        return False
+                break
+        cls._save(compromisos)
+
+    @classmethod
+    def delete(cls, tid):
+        compromisos = cls.get_all()
+        compromisos = [c for c in compromisos if c['id'] != int(tid)]
+        cls._save(compromisos)
+
+    @classmethod
+    def _save(cls, data):
+        with open(cls._get_path(), 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
