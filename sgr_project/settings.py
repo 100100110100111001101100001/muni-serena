@@ -14,13 +14,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gestion_territorial',
+    'gestion_institucional',
+    'ficha_desempeno',
     'agenda_colectiva',
     'atencion_social',
-    # NOTA: 'gestion_institucional' y 'ficha_desempeno' (apps de tu compañero,
-    # segun el blueprint de 4 apps) deben ser agregadas por el cuando cree
-    # esas carpetas con su urls.py/views.py — agregarlas antes rompe el
-    # proyecto porque Django no encontraria el modulo.
 ]
 
 MIDDLEWARE = [

@@ -34,10 +34,7 @@
                         <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'ficha_personal' 1 %}">Ficha Personal (María)</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'ficha_personal' 2 %}">Ficha Personal (Alberto)</a>
+                        <a class="nav-link" href="{% url 'ficha_personal_lista' %}">Fichas de Desempeño</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link bg-primary text-white rounded px-3" href="{% url 'tubo_tablero' %}">Tubo Kanban</a>
@@ -45,8 +42,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'lista_casos' %}">Atención Social (Casos)</a>
                     </li>
-                    <!-- TODO (compañero): agregar aca tu link cuando tengas
-                         la ruta 'ficha_personal_lista' de tu app ficha_desempeno -->
                 </ul>
             </div>
         </div>

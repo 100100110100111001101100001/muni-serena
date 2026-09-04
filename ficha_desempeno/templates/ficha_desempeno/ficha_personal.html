@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block titulo %}Ficha de {{ funcionario.nombre }}{% endblock %}
+{% block contenido %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Ficha de Personal: {{ funcionario.nombre }}</h2>
+        <h5 class="text-muted">{{ funcionario.cargo }} | Delegación {{ funcionario.delegacion }}</h5>
+        <hr>
+
+        <div class="card mb-4 border-{{ color }}">
+            <div class="card-body bg-light">
+                <h5 class="card-title">Resultado de Desempeño Semanal</h5>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="fs-4 my-1">Estatus: <span class="badge bg-{{ color }}">{{ color_label }}</span></p>
+                        <p class="mb-1"><strong>Cumplimiento Actual:</strong> {{ cumplimiento }}%</p>
+                        <p class="mb-1"><strong>Meta Esperada al Día:</strong> {{ esperado_hoy }}%</p>
+                        <p class="mb-0 text-muted">Cálculo basado en el día {{ dias_transcurridos }} de 91 totales.</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="display-3 fw-bold text-{{ color }}">{{ cumplimiento }}%</div>
+                        <span class="text-muted">del total acumulado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4>Items de Medición Específicos</h4>
+        <div class="list-group mb-4">
+            {% for item in funcionario.items %}
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <h6 class="mb-1">{{ item.nombre }}</h6>
+                    <small>Ponderador: {{ item.ponderador }}%</small>
+                </div>
+                <p class="mb-1">Avance: <strong>{{ item.avance }}</strong> de una meta de {{ item.meta }} unidades.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h5>Gestiones en Terreno</h5>
+                <p class="text-muted small">Registra nuevas actividades diarias que aportarán a tus metas acumuladas y subirán evidencias fotográficas.</p>
+                <a href="{% url 'registrar_actividad' funcionario.id %}" class="btn btn-primary w-100 mb-2">Ingresar Nueva Actividad</a>
+                <a href="{% url 'ficha_personal_lista' %}" class="btn btn-outline-secondary w-100">Volver a la Lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
