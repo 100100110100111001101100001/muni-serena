@@ -1,9 +1,3 @@
-# PLACEHOLDER MINIMO — esto es responsabilidad real de tu compañero (App 2).
-# Solo existe aca para que agenda_colectiva pueda importar FuncionariosService
-# y correr hoy sin esperar su parte. Cuando el suba su ficha_desempeno real
-# (con urls.py, views.py, templates, y agregada a INSTALLED_APPS), su version
-# debe reemplazar/fusionarse con esta, manteniendo el mismo nombre de clase
-# y los mismos metodos (get_all, get_by_id) para no romper agenda_colectiva.
 import json
 import os
 from django.conf import settings
@@ -31,3 +25,17 @@ class FuncionariosService:
             if f['id'] == int(fid):
                 return f
         return None
+
+    @classmethod
+    def registrar_avance(cls, fid, cantidad):
+        funcionarios = cls.get_all()
+        for f in funcionarios:
+            if f['id'] == int(fid):
+                f['avance_actual'] += int(cantidad)
+                # Incrementar el primer item de medición por defecto en este prototipo funcional
+                if f['items']:
+                    f['items'][0]['avance'] += int(cantidad)
+                break
+
+        with open(cls._get_path(), 'w', encoding='utf-8') as file:
+            json.dump(funcionarios, file, indent=2, ensure_ascii=False)

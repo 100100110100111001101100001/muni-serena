@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block titulo %}Portal SGR - La Serena 2026{% endblock %}
+{% block contenido %}
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="p-5 text-white bg-dark rounded-3">
+            <h2>SGR - Sistema de Gestión de Requerimientos Comunal</h2>
+            <p>Municipalidad de La Serena (2026). Gestión territorial descentralizada, transparente y orientada al cumplimiento de objetivos con nuestros vecinos.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-center border-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title text-primary">Población Total</h5>
+                <p class="card-text fs-2 fw-bold">{{ poblacion_total }}</p>
+                <span class="text-muted">Habitantes (Censo 2024)</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center border-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title text-success">Área Urbana</h5>
+                <p class="card-text fs-2 fw-bold">{{ poblacion_urbana_pct }}%</p>
+                <span class="text-muted">Gestión en Sectores Consolidados</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center border-warning mb-3">
+            <div class="card-body">
+                <h5 class="card-title text-warning">Área Rural</h5>
+                <p class="card-text fs-2 fw-bold">{{ poblacion_rural_pct }}%</p>
+                <span class="text-muted">Desafíos en Localidades Dispersas</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h3 class="mb-3">Delegaciones Municipales de Nuestra Jurisdicción</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Delegación</th>
+                        <th>Tipo de Territorio</th>
+                        <th>Dirección Oficial</th>
+                        <th>Delegado/a a Cargo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for del in delegaciones %}
+                    <tr>
+                        <td><strong>{{ del.nombre }}</strong></td>
+                        <td><span class="badge bg-secondary">{{ del.tipo }}</span></td>
+                        <td>{{ del.direccion }}</td>
+                        <td>{{ del.encargado }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

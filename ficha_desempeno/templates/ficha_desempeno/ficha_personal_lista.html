@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block titulo %}Fichas de Desempeño - SGR{% endblock %}
+{% block contenido %}
+<div class="row">
+    <div class="col-12">
+        <h3 class="mb-4">Estatus Diario de Funcionarios Municipales</h3>
+        <p class="text-muted">Listado del equipo con evaluación automatizada de metas acumuladas respecto del día actual (Día 46 de 91 del período de evaluación SGR).</p>
+        <div class="row">
+            {% for f in funcionarios %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-{{ f.color }}">
+                    <div class="card-header bg-{{ f.color }} text-white">
+                        <h5 class="card-title my-0">{{ f.nombre }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-1"><strong>Cargo:</strong> {{ f.cargo }}</p>
+                        <p class="mb-1"><strong>Delegación:</strong> {{ f.delegacion }}</p>
+                        <p class="mb-3"><strong>Cumplimiento Real:</strong> <span class="badge bg-{{ f.color }}">{{ f.cumplimiento }}%</span></p>
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'ficha_personal_detalle' f.id %}" class="btn btn-outline-dark btn-sm">Ver Ficha Detallada</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

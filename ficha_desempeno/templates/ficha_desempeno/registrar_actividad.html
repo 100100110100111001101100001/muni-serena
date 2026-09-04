@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block titulo %}Ingresar Actividad en Terreno{% endblock %}
+{% block contenido %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h4 class="card-title my-0">Registro Diario de Actividad</h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted small">Registrando actividad para <strong>{{ funcionario.nombre }}</strong>.</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="tipo_item" class="form-label">Item de Medición</label>
+                        <select name="tipo_item" id="tipo_item" class="form-select">
+                            {% for item in funcionario.items %}
+                            <option value="{{ forloop.counter }}">{{ item.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label">Cantidad Lograda</label>
+                        <input type="number" name="cantidad" id="cantidad" class="form-control" value="1" min="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción Técnica de la Gestión</label>
+                        <textarea name="descripcion" id="descripcion" class="form-control" rows="3" required placeholder="Ej: Atención de reclamo vecinal por alumbrado público..."></textarea>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success">Guardar y Generar Código de Logro</button>
+                        <a href="{% url 'ficha_personal_detalle' funcionario.id %}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
