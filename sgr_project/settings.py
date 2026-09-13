@@ -18,6 +18,10 @@ INSTALLED_APPS = [
     'ficha_desempeno',
     'agenda_colectiva',
     'atencion_social',
+    'evidenciasApp',
+    'configurarMetasApp',
+    'auditoriaApp',
+    'resumenAlcaldeApp',
 ]
 
 MIDDLEWARE = [

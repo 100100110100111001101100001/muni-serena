@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "nombre": "Evaluación de gestión municipal 2026",
+    "items": [
+      {
+        "nombre": "Cumplimiento de compromisos",
+        "meta": "80",
+        "ponderacion": "60"
+      },
+      {
+        "nombre": "Ejecución de actividades planificadas",
+        "meta": "12",
+        "ponderacion": "40"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Evaluación de gestión municipal 2026",
+    "items": [
+      {
+        "nombre": "Cumplimiento de compromisos",
+        "meta": "10",
+        "ponderacion": "100"
+      }
+    ]
+  }
+]

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Configurar metas | SGR La Serena{% endblock %}
+
+{% block contenido %}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+        <p class="text-primary fw-semibold mb-1">PLANIFICACIÓN Y SEGUIMIENTO</p>
+        <h1 class="h2 mb-1">Períodos de medición</h1>
+        <p class="text-muted mb-0">Define períodos y organiza las metas que serán evaluadas.</p>
+    </div>
+    <a class="btn btn-primary" href="{% url 'crear_periodo' %}">+ Crear período</a>
+</div>
+
+{% if periodos %}
+<div class="row g-4">
+    {% for periodo in periodos %}
+    <div class="col-12 col-lg-6">
+        <article class="card h-100 shadow-sm">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <h2 class="h5 mb-0">{{ periodo.nombre }}</h2>
+                <span class="badge bg-light text-dark">{{ periodo.items|length }} ítems</span>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Ítem</th>
+                                <th class="text-end">Meta</th>
+                                <th class="text-end">Ponderación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in periodo.items %}
+                            <tr>
+                                <td>{{ item.nombre }}</td>
+                                <td class="text-end fw-semibold">{{ item.meta }}</td>
+                                <td class="text-end"><span class="badge bg-primary">{{ item.ponderacion }}%</span></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer bg-white d-flex justify-content-end gap-2">
+                <a class="btn btn-outline-primary btn-sm" href="{% url 'editar_periodo' periodo.id %}">Editar</a>
+                <form method="post" action="{% url 'eliminar_periodo' periodo.id %}" onsubmit="return confirm('¿Eliminar este período y sus ítems?');">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                </form>
+            </div>
+        </article>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card border-0 shadow-sm text-center py-5">
+    <div class="card-body">
+        <h2 class="h4">Aún no hay períodos configurados</h2>
+        <p class="text-muted">Crea el primer período para comenzar a definir sus metas.</p>
+        <a class="btn btn-primary" href="{% url 'crear_periodo' %}">Crear período</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

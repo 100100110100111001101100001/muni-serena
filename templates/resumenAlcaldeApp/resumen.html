@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Resumen del alcalde | SGR La Serena{% endblock %}
+
+{% block contenido %}
+<style>
+    .resumen-hero {
+        background: linear-gradient(135deg, #172b4d 0%, #0d6efd 100%);
+        border-radius: 0.75rem;
+    }
+
+    .indicador-card {
+        border-top: 4px solid #0d6efd;
+    }
+
+    .tabla-resumen th {
+        white-space: nowrap;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+    }
+
+    .tabla-resumen td {
+        min-width: 145px;
+    }
+
+    .tabla-resumen td:first-child {
+        min-width: 190px;
+    }
+</style>
+
+<section class="resumen-hero text-white p-4 p-md-5 mb-4 shadow-sm">
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-3">
+        <div>
+            <p class="text-uppercase small fw-semibold mb-2 opacity-75">Panel ejecutivo municipal</p>
+            <h1 class="display-6 fw-bold mb-2">Resumen general de la ciudad</h1>
+            <p class="mb-0 opacity-75">Seguimiento territorial del período: {{ periodo }}</p>
+        </div>
+        <span class="badge bg-light text-primary fs-6 px-3 py-2">Datos simulados</span>
+    </div>
+</section>
+
+<div class="row g-3 mb-4">
+    <div class="col-12 col-md-4">
+        <div class="card indicador-card h-100 shadow-sm">
+            <div class="card-body">
+                <p class="text-muted small mb-1">Delegaciones monitoreadas</p>
+                <p class="display-6 fw-bold mb-0">{{ delegaciones|length }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card indicador-card h-100 shadow-sm">
+            <div class="card-body">
+                <p class="text-muted small mb-1">Corte de información</p>
+                <p class="h4 fw-bold mb-0">13 septiembre 2026</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card indicador-card h-100 shadow-sm">
+            <div class="card-body">
+                <p class="text-muted small mb-1">Estado del período</p>
+                <p class="h4 fw-bold text-success mb-0">En seguimiento</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-white border-bottom py-3">
+        <h2 class="h5 mb-1">Desempeño por delegación</h2>
+        <p class="text-muted small mb-0">Promedios diarios y avance respecto de la meta actual.</p>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle tabla-resumen mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Delegación</th>
+                    <th>Promedio de atenciones diarias</th>
+                    <th>Promedio de actividades cumplidas diaria</th>
+                    <th>Porcentaje de cumplimiento diario</th>
+                    <th>Porcentaje hacia la meta actual</th>
+                    <th>Días antes del final</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for delegacion in delegaciones %}
+                <tr>
+                    <td class="fw-semibold">{{ delegacion.nombre }}</td>
+                    <td><span class="fs-5 fw-bold">{{ delegacion.atenciones_diarias }}</span> <small class="text-muted">atenciones</small></td>
+                    <td><span class="fs-5 fw-bold">{{ delegacion.actividades_cumplidas }}</span> <small class="text-muted">actividades</small></td>
+                    <td><span class="badge {% if delegacion.cumplimiento_diario|slice:':-1' >= '80' %}bg-success{% else %}bg-warning text-dark{% endif %} fs-6">{{ delegacion.cumplimiento_diario }}</span></td>
+                    <td><span class="badge bg-primary fs-6">{{ delegacion.avance_meta }}</span></td>
+                    <td><span class="fw-semibold">{{ delegacion.dias_restantes }}</span> días</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Evidencias por validar | SGR La Serena{% endblock %}
+
+{% block contenido %}
+<style>
+    .evidencias-header {
+        border-left: 5px solid #0d6efd;
+    }
+
+    .evidencia-card {
+        border: 2px solid #dee2e6;
+        transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .evidencia-card.estado-aceptada {
+        border-color: #198754;
+        background-color: #f0fff7;
+    }
+
+    .evidencia-card.estado-rechazada {
+        border-color: #dc3545;
+        background-color: #fff5f5;
+    }
+
+    .evidencia-card.estado-correccion {
+        border-color: #fd7e14;
+        background-color: #fff9f0;
+    }
+
+    .evidencia-imagen {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+    }
+
+    .estado-actual {
+        min-height: 24px;
+    }
+</style>
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4 evidencias-header ps-3">
+    <div>
+        <p class="text-primary fw-semibold mb-1">REVISIÓN DOCUMENTAL</p>
+        <h1 class="h2 mb-1">Evidencias por validar</h1>
+        <p class="text-muted mb-0">Revisa los respaldos recibidos y define el siguiente paso.</p>
+    </div>
+    <span class="badge bg-secondary fs-6 px-3 py-2">{{ evidencias|length }} pendientes</span>
+</div>
+
+<div class="row g-4">
+    {% for evidencia in evidencias %}
+    <div class="col-12 col-lg-4">
+        <article class="card h-100 shadow-sm evidencia-card" data-evidencia-card>
+            <img src="{% static evidencia.imagen %}" class="card-img-top evidencia-imagen" alt="Evidencia: {{ evidencia.titulo }}">
+            <div class="card-body d-flex flex-column">
+                <p class="text-muted small mb-2">Evidencia #{{ evidencia.id }} · {{ evidencia.fecha }}</p>
+                <h2 class="h5 card-title">{{ evidencia.titulo }}</h2>
+                <p class="card-text text-muted mb-4">Responsable: {{ evidencia.responsable }}</p>
+                <div class="mt-auto">
+                    <p class="estado-actual small fw-semibold mb-2" data-estado>Estado: Pendiente</p>
+                    <div class="d-flex flex-wrap gap-2" role="group" aria-label="Acciones para {{ evidencia.titulo }}">
+                        <button type="button" class="btn btn-success btn-sm" data-accion="aceptada">Aceptar</button>
+                        <button type="button" class="btn btn-danger btn-sm" data-accion="rechazada">Rechazar</button>
+                        <button type="button" class="btn btn-warning btn-sm" data-accion="correccion">Solicitar corrección</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    document.querySelectorAll('[data-evidencia-card]').forEach((card) => {
+        card.querySelectorAll('[data-accion]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const estado = button.dataset.accion;
+                const etiquetas = {
+                    aceptada: 'Aceptada',
+                    rechazada: 'Rechazada',
+                    correccion: 'Corrección solicitada'
+                };
+
+                card.classList.remove('estado-aceptada', 'estado-rechazada', 'estado-correccion');
+                card.classList.add(`estado-${estado}`);
+                card.querySelector('[data-estado]').textContent = `Estado: ${etiquetas[estado]}`;
+            });
+        });
+    });
+</script>
+{% endblock %}

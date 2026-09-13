@@ -7,4 +7,8 @@ urlpatterns = [
     path('desempeno/', include('ficha_desempeno.urls')),  # App 2 (Estudiante 2)
     path('agenda/', include('agenda_colectiva.urls')),     # App 3 (Estudiante 1)
     path('social/', include('atencion_social.urls')),      # App 4 (Estudiante 1)
+    path('evidencias/', include('evidenciasApp.urls')),    # App 5
+    path('metas/', include('configurarMetasApp.urls')),   # App 6
+    path('auditoria/', include('auditoriaApp.urls')),     # App 7
+    path('resumen-alcalde/', include('resumenAlcaldeApp.urls')),  # App 8
 ]

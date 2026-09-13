@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block titulo %}{% if periodo %}Editar período{% else %}Crear período{% endif %} | SGR La Serena{% endblock %}
+
+{% block contenido %}
+<div class="row justify-content-center">
+    <div class="col-12 col-xl-9">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <p class="text-primary fw-semibold mb-1">CONFIGURACIÓN DE METAS</p>
+                <h1 class="h2 mb-1">{% if periodo %}Editar período{% else %}Crear período{% endif %}</h1>
+                <p class="text-muted mb-0">Asigna un nombre y agrega los ítems que medirás.</p>
+            </div>
+            <a class="btn btn-outline-secondary" href="{% url 'periodos_lista' %}">Volver</a>
+        </div>
+
+        <form method="post" class="card shadow-sm border-0">
+            {% csrf_token %}
+            <div class="card-body p-4">
+                <div class="mb-4">
+                    <label class="form-label fw-semibold" for="{{ periodo_form.nombre.id_for_label }}">{{ periodo_form.nombre.label }}</label>
+                    {{ periodo_form.nombre }}
+                    {% for error in periodo_form.nombre.errors %}<div class="text-danger small mt-1">{{ error }}</div>{% endfor %}
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h2 class="h5 mb-1">Ítems del período</h2>
+                        <p class="text-muted small mb-0">La ponderación se expresa como porcentaje y no puede superar el 100% en total.</p>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm" id="agregar-item">+ Agregar ítem</button>
+                </div>
+
+                {{ item_formset.management_form }}
+                <div id="items-container">
+                    {% for item_form in item_formset %}
+                    <div class="item-row border rounded p-3 mb-3">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-12 col-md-5">
+                                <label class="form-label small fw-semibold">{{ item_form.nombre.label }}</label>
+                                {{ item_form.nombre }}
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label class="form-label small fw-semibold">{{ item_form.meta.label }}</label>
+                                {{ item_form.meta }}
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label class="form-label small fw-semibold">{{ item_form.ponderacion.label }}</label>
+                                {{ item_form.ponderacion }}
+                            </div>
+                            <div class="col-12 col-md-1 text-md-end">
+                                {{ item_form.DELETE.as_hidden }}
+                                <button type="button" class="btn btn-outline-danger btn-sm quitar-item" title="Quitar ítem">Quitar</button>
+                            </div>
+                        </div>
+                        {% for field in item_form %}{% for error in field.errors %}<div class="text-danger small mt-2">{{ error }}</div>{% endfor %}{% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if item_formset.non_form_errors %}<div class="text-danger small">{{ item_formset.non_form_errors }}</div>{% endif %}
+            </div>
+            <div class="card-footer bg-white d-flex justify-content-end gap-2 p-3">
+                <a class="btn btn-light" href="{% url 'periodos_lista' %}">Cancelar</a>
+                <button class="btn btn-primary" type="submit">{% if periodo %}Guardar cambios{% else %}Crear período{% endif %}</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<template id="item-vacio">
+    <div class="item-row border rounded p-3 mb-3">
+        <div class="row g-3 align-items-end">
+            <div class="col-12 col-md-5">
+                <label class="form-label small fw-semibold">Nombre del ítem</label>
+                {{ item_formset.empty_form.nombre }}
+            </div>
+            <div class="col-6 col-md-3">
+                <label class="form-label small fw-semibold">Meta numérica</label>
+                {{ item_formset.empty_form.meta }}
+            </div>
+            <div class="col-6 col-md-3">
+                <label class="form-label small fw-semibold">Ponderación (%)</label>
+                {{ item_formset.empty_form.ponderacion }}
+            </div>
+            <div class="col-12 col-md-1 text-md-end">
+                {{ item_formset.empty_form.DELETE.as_hidden }}
+                <button type="button" class="btn btn-outline-danger btn-sm quitar-item">Quitar</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    const container = document.getElementById('items-container');
+    const totalForms = document.getElementById('id_form-TOTAL_FORMS');
+    const template = document.getElementById('item-vacio').innerHTML;
+
+    document.getElementById('agregar-item').addEventListener('click', () => {
+        container.insertAdjacentHTML('beforeend', template.replaceAll('__prefix__', totalForms.value));
+        totalForms.value = Number(totalForms.value) + 1;
+    });
+
+    container.addEventListener('click', (event) => {
+        if (!event.target.classList.contains('quitar-item')) return;
+        const row = event.target.closest('.item-row');
+        const deleteField = row.querySelector('input[name$="-DELETE"]');
+        if (deleteField) deleteField.value = 'on';
+        row.remove();
+    });
+</script>
+{% endblock %}
