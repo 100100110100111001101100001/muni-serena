@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurar metas | SGR La Serena</title>
+    <!-- Bootstrap CSS Local -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand img {
+            max-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Responsivo -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../static/img/logo_municipal.png" alt="Logo Municipalidad" class="me-2">
+                <span class="fw-bold">SGR La Serena</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../desempeno/index.html">Fichas de Desempeño</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-white rounded px-3" href="../agenda/kanban.html">Tubo Kanban</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../social/casos.html">Atención Social (Casos)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../evidencias/index.html">Evidencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Configurar metas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../auditoria/index.html">Auditoría</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resumen-alcalde/index.html">Resumen alcalde</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        
+        
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+        <p class="text-primary fw-semibold mb-1">PLANIFICACIÓN Y SEGUIMIENTO</p>
+        <h1 class="h2 mb-1">Períodos de medición</h1>
+        <p class="text-muted mb-0">Define períodos y organiza las metas que serán evaluadas.</p>
+    </div>
+    <a class="btn btn-primary" href="#">+ Crear período</a>
+</div>
+
+
+<div class="row g-4">
+    
+    <div class="col-12 col-lg-6">
+        <article class="card h-100 shadow-sm">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <h2 class="h5 mb-0">Evaluación de gestión municipal 2026</h2>
+                <span class="badge bg-light text-dark">2 ítems</span>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Ítem</th>
+                                <th class="text-end">Meta</th>
+                                <th class="text-end">Ponderación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td>Cumplimiento de compromisos</td>
+                                <td class="text-end fw-semibold">80</td>
+                                <td class="text-end"><span class="badge bg-primary">60%</span></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Ejecución de actividades planificadas</td>
+                                <td class="text-end fw-semibold">12</td>
+                                <td class="text-end"><span class="badge bg-primary">40%</span></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer bg-white d-flex justify-content-end gap-2">
+                <a class="btn btn-outline-primary btn-sm" href="editar-1.html">Editar</a>
+                <form method="post" action="#" onsubmit="return confirm('¿Eliminar este período y sus ítems?');">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="XQaSDj9TFUQaXbQS3ipzqZgFh54jA2172uFutbVYaopIJWjsDMxV4i3ODggCNMMu">
+                    <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                </form>
+            </div>
+        </article>
+    </div>
+    
+    <div class="col-12 col-lg-6">
+        <article class="card h-100 shadow-sm">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <h2 class="h5 mb-0">Evaluación de gestión municipal 2026</h2>
+                <span class="badge bg-light text-dark">1 ítems</span>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Ítem</th>
+                                <th class="text-end">Meta</th>
+                                <th class="text-end">Ponderación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td>Cumplimiento de compromisos</td>
+                                <td class="text-end fw-semibold">10</td>
+                                <td class="text-end"><span class="badge bg-primary">100%</span></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer bg-white d-flex justify-content-end gap-2">
+                <a class="btn btn-outline-primary btn-sm" href="editar-2.html">Editar</a>
+                <form method="post" action="#" onsubmit="return confirm('¿Eliminar este período y sus ítems?');">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="XQaSDj9TFUQaXbQS3ipzqZgFh54jA2172uFutbVYaopIJWjsDMxV4i3ODggCNMMu">
+                    <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                </form>
+            </div>
+        </article>
+    </div>
+    
+</div>
+
+
+    </div>
+
+    <footer class="bg-white text-center py-4 mt-5 border-top">
+        <div class="container text-muted">
+            <p class="mb-1">© 2026 Municipalidad de La Serena - Sistema de Gestión de Requerimientos (SGR)</p>
+            <small>Desarrollado de forma local para Programación Back End - Inacap La Serena</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle Local -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

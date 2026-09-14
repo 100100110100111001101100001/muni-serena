@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar Actividad en Terreno</title>
+    <!-- Bootstrap CSS Local -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand img {
+            max-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Responsivo -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../static/img/logo_municipal.png" alt="Logo Municipalidad" class="me-2">
+                <span class="fw-bold">SGR La Serena</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Fichas de Desempeño</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-white rounded px-3" href="../agenda/kanban.html">Tubo Kanban</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../social/casos.html">Atención Social (Casos)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../evidencias/index.html">Evidencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../metas/index.html">Configurar metas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../auditoria/index.html">Auditoría</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resumen-alcalde/index.html">Resumen alcalde</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        
+        
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h4 class="card-title my-0">Registro Diario de Actividad</h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted small">Registrando actividad para <strong>María Fonseca Palma</strong>.</p>
+                <form method="POST" onsubmit="return false;">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="3S0l3nDJBdH0XYQ7Y749FVuV2l0hqai75UyTXcNyRM6ogLKAhpMdbgZhJbn8I6Wz">
+                    <div class="mb-3">
+                        <label for="tipo_item" class="form-label">Item de Medición</label>
+                        <select name="tipo_item" id="tipo_item" class="form-select">
+                            
+                            <option value="1">Reuniones con juntas de vecinos</option>
+                            
+                            <option value="2">Gestión de solicitudes de terreno</option>
+                            
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label">Cantidad Lograda</label>
+                        <input type="number" name="cantidad" id="cantidad" class="form-control" value="1" min="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción Técnica de la Gestión</label>
+                        <textarea name="descripcion" id="descripcion" class="form-control" rows="3" required placeholder="Ej: Atención de reclamo vecinal por alumbrado público..."></textarea>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success">Guardar y Generar Código de Logro</button>
+                        <a href="personal-1.html" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <footer class="bg-white text-center py-4 mt-5 border-top">
+        <div class="container text-muted">
+            <p class="mb-1">© 2026 Municipalidad de La Serena - Sistema de Gestión de Requerimientos (SGR)</p>
+            <small>Desarrollado de forma local para Programación Back End - Inacap La Serena</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle Local -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

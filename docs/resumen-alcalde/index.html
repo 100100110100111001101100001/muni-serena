@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen del alcalde | SGR La Serena</title>
+    <!-- Bootstrap CSS Local -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand img {
+            max-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Responsivo -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../static/img/logo_municipal.png" alt="Logo Municipalidad" class="me-2">
+                <span class="fw-bold">SGR La Serena</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../desempeno/index.html">Fichas de Desempeño</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-white rounded px-3" href="../agenda/kanban.html">Tubo Kanban</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../social/casos.html">Atención Social (Casos)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../evidencias/index.html">Evidencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../metas/index.html">Configurar metas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../auditoria/index.html">Auditoría</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Resumen alcalde</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        
+        
+<style>
+    .resumen-hero {
+        background: linear-gradient(135deg, #172b4d 0%, #0d6efd 100%);
+        border-radius: 0.75rem;
+    }
+
+    .indicador-card {
+        border-top: 4px solid #0d6efd;
+    }
+
+    .tabla-resumen th {
+        white-space: nowrap;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+    }
+
+    .tabla-resumen td {
+        min-width: 145px;
+    }
+
+    .tabla-resumen td:first-child {
+        min-width: 190px;
+    }
+</style>
+
+<section class="resumen-hero text-white p-4 p-md-5 mb-4 shadow-sm">
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-3">
+        <div>
+            <p class="text-uppercase small fw-semibold mb-2 opacity-75">Panel ejecutivo municipal</p>
+            <h1 class="display-6 fw-bold mb-2">Resumen general de la ciudad</h1>
+            <p class="mb-0 opacity-75">Seguimiento territorial del período: Evaluación de gestión municipal 2026</p>
+        </div>
+        <span class="badge bg-light text-primary fs-6 px-3 py-2">Datos simulados</span>
+    </div>
+</section>
+
+<div class="row g-3 mb-4">
+    <div class="col-12 col-md-4">
+        <div class="card indicador-card h-100 shadow-sm">
+            <div class="card-body">
+                <p class="text-muted small mb-1">Delegaciones monitoreadas</p>
+                <p class="display-6 fw-bold mb-0">6</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card indicador-card h-100 shadow-sm">
+            <div class="card-body">
+                <p class="text-muted small mb-1">Corte de información</p>
+                <p class="h4 fw-bold mb-0">13 septiembre 2026</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card indicador-card h-100 shadow-sm">
+            <div class="card-body">
+                <p class="text-muted small mb-1">Estado del período</p>
+                <p class="h4 fw-bold text-success mb-0">En seguimiento</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-white border-bottom py-3">
+        <h2 class="h5 mb-1">Desempeño por delegación</h2>
+        <p class="text-muted small mb-0">Promedios diarios y avance respecto de la meta actual.</p>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle tabla-resumen mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Delegación</th>
+                    <th>Promedio de atenciones diarias</th>
+                    <th>Promedio de actividades cumplidas diaria</th>
+                    <th>Porcentaje de cumplimiento diario</th>
+                    <th>Porcentaje hacia la meta actual</th>
+                    <th>Días antes del final</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td class="fw-semibold">Las Compañías</td>
+                    <td><span class="fs-5 fw-bold">38</span> <small class="text-muted">atenciones</small></td>
+                    <td><span class="fs-5 fw-bold">7</span> <small class="text-muted">actividades</small></td>
+                    <td><span class="badge bg-success fs-6">86%</span></td>
+                    <td><span class="badge bg-primary fs-6">78%</span></td>
+                    <td><span class="fw-semibold">18</span> días</td>
+                </tr>
+                
+                <tr>
+                    <td class="fw-semibold">La Pampa</td>
+                    <td><span class="fs-5 fw-bold">24</span> <small class="text-muted">atenciones</small></td>
+                    <td><span class="fs-5 fw-bold">5</span> <small class="text-muted">actividades</small></td>
+                    <td><span class="badge bg-success fs-6">82%</span></td>
+                    <td><span class="badge bg-primary fs-6">74%</span></td>
+                    <td><span class="fw-semibold">18</span> días</td>
+                </tr>
+                
+                <tr>
+                    <td class="fw-semibold">La Antena - La Florida</td>
+                    <td><span class="fs-5 fw-bold">31</span> <small class="text-muted">atenciones</small></td>
+                    <td><span class="fs-5 fw-bold">6</span> <small class="text-muted">actividades</small></td>
+                    <td><span class="badge bg-success fs-6">89%</span></td>
+                    <td><span class="badge bg-primary fs-6">81%</span></td>
+                    <td><span class="fw-semibold">18</span> días</td>
+                </tr>
+                
+                <tr>
+                    <td class="fw-semibold">Avenida del Mar</td>
+                    <td><span class="fs-5 fw-bold">19</span> <small class="text-muted">atenciones</small></td>
+                    <td><span class="fs-5 fw-bold">4</span> <small class="text-muted">actividades</small></td>
+                    <td><span class="badge bg-warning text-dark fs-6">76%</span></td>
+                    <td><span class="badge bg-primary fs-6">68%</span></td>
+                    <td><span class="fw-semibold">18</span> días</td>
+                </tr>
+                
+                <tr>
+                    <td class="fw-semibold">Centro</td>
+                    <td><span class="fs-5 fw-bold">46</span> <small class="text-muted">atenciones</small></td>
+                    <td><span class="fs-5 fw-bold">9</span> <small class="text-muted">actividades</small></td>
+                    <td><span class="badge bg-success fs-6">93%</span></td>
+                    <td><span class="badge bg-primary fs-6">88%</span></td>
+                    <td><span class="fw-semibold">18</span> días</td>
+                </tr>
+                
+                <tr>
+                    <td class="fw-semibold">Rural</td>
+                    <td><span class="fs-5 fw-bold">16</span> <small class="text-muted">atenciones</small></td>
+                    <td><span class="fs-5 fw-bold">3</span> <small class="text-muted">actividades</small></td>
+                    <td><span class="badge bg-warning text-dark fs-6">71%</span></td>
+                    <td><span class="badge bg-primary fs-6">63%</span></td>
+                    <td><span class="fw-semibold">18</span> días</td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    </div>
+
+    <footer class="bg-white text-center py-4 mt-5 border-top">
+        <div class="container text-muted">
+            <p class="mb-1">© 2026 Municipalidad de La Serena - Sistema de Gestión de Requerimientos (SGR)</p>
+            <small>Desarrollado de forma local para Programación Back End - Inacap La Serena</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle Local -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

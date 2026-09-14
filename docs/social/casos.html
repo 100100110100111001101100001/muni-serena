@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casos del Área Social - SGR</title>
+    <!-- Bootstrap CSS Local -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand img {
+            max-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Responsivo -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../static/img/logo_municipal.png" alt="Logo Municipalidad" class="me-2">
+                <span class="fw-bold">SGR La Serena</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../desempeno/index.html">Fichas de Desempeño</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-white rounded px-3" href="../agenda/kanban.html">Tubo Kanban</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="casos.html">Atención Social (Casos)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../evidencias/index.html">Evidencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../metas/index.html">Configurar metas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../auditoria/index.html">Auditoría</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resumen-alcalde/index.html">Resumen alcalde</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        
+        
+<div class="row align-items-center mb-4">
+    <div class="col-md-8">
+        <h3>Módulo de Casos Especiales - Área Social</h3>
+        <p class="text-muted">Gestión unificada de beneficiarios. Cada persona registrada permite almacenar de forma secuencial hasta 3 atenciones o gestiones.</p>
+    </div>
+    <div class="col-md-4 text-md-end">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearCaso">
+            Registrar Beneficiario Nuevo
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>RUT</th>
+                        <th>Nombre Beneficiario</th>
+                        <th>Dirección de Contacto</th>
+                        <th>Atenciones Registradas</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td><strong>12.345.678-9</strong></td>
+                        <td>Héctor Valenzuela</td>
+                        <td>Sectores Altos de La Antena</td>
+                        <td>
+                            <span class="badge bg-info">
+                                2 / 3 Etapas
+                            </span>
+                        </td>
+                        <td>
+                            <a href="caso-1.html" class="btn btn-sm btn-outline-dark">Ver Historial / Agregar Atención</a>
+                            <a href="#" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas eliminar el historial de este beneficiario?')">Eliminar</a>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCrearCaso" tabindex="-1" aria-labelledby="modalCrearCasoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="modalCrearCasoLabel">Registrar Beneficiario</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="#" method="POST" onsubmit="return false;">
+          <input type="hidden" name="csrfmiddlewaretoken" value="vXWl2gzuPaBR9hnq7bycGfoZFAQEAigY3bFYVAkMOevbFVU5mKaYeKykrp91iLeL">
+          <div class="modal-body">
+              <p>
+    <label for="id_rut_vecino">RUT del Beneficiario:</label>
+    <input type="text" name="rut_vecino" class="form-control" placeholder="Ej: 12.345.678-9" required id="id_rut_vecino">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_nombre_vecino">Nombre Completo:</label>
+    <input type="text" name="nombre_vecino" class="form-control" minlength="3" required id="id_nombre_vecino">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_direccion">Dirección de Domicilio:</label>
+    <input type="text" name="direccion" class="form-control" required id="id_direccion">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_telefono">Teléfono de Contacto:</label>
+    <input type="text" name="telefono" class="form-control" required id="id_telefono">
+    
+    
+      
+    
+  </p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-success">Guardar Caso Nuevo</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer class="bg-white text-center py-4 mt-5 border-top">
+        <div class="container text-muted">
+            <p class="mb-1">© 2026 Municipalidad de La Serena - Sistema de Gestión de Requerimientos (SGR)</p>
+            <small>Desarrollado de forma local para Programación Back End - Inacap La Serena</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle Local -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

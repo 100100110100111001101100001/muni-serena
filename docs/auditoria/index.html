@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditoría | SGR La Serena</title>
+    <!-- Bootstrap CSS Local -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand img {
+            max-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Responsivo -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../static/img/logo_municipal.png" alt="Logo Municipalidad" class="me-2">
+                <span class="fw-bold">SGR La Serena</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../desempeno/index.html">Fichas de Desempeño</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-white rounded px-3" href="../agenda/kanban.html">Tubo Kanban</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../social/casos.html">Atención Social (Casos)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../evidencias/index.html">Evidencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../metas/index.html">Configurar metas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Auditoría</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resumen-alcalde/index.html">Resumen alcalde</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        
+        
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+        <p class="text-primary fw-semibold mb-1">CONTROL Y TRAZABILIDAD</p>
+        <h1 class="h2 mb-1">Registros de auditoría</h1>
+        <p class="text-muted mb-0">Consulta de eventos registrados en el sistema.</p>
+    </div>
+    <span class="badge bg-secondary fs-6 px-3 py-2">4 registros simulados</span>
+</div>
+
+<div class="alert alert-info border-0 shadow-sm" role="status">
+    Estos registros son datos de demostración y no representan actividad real del sistema.
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Usuario</th>
+                    <th>Evento</th>
+                    <th>Identificador único</th>
+                    <th>Valor antiguo</th>
+                    <th>Valor nuevo</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td class="text-nowrap">13/09/2026</td>
+                    <td class="text-nowrap"><code>09:15:42</code></td>
+                    <td>maria.gonzalez</td>
+                    <td>Actualización de meta</td>
+                    <td><span class="badge bg-light text-dark border">AUD-2026-0001</span></td>
+                    <td class="text-muted">Meta: 70</td>
+                    <td class="fw-semibold">Meta: 80</td>
+                </tr>
+                
+                <tr>
+                    <td class="text-nowrap">12/09/2026</td>
+                    <td class="text-nowrap"><code>16:28:07</code></td>
+                    <td>carlos.rojas</td>
+                    <td>Creación de período de medición</td>
+                    <td><span class="badge bg-light text-dark border">AUD-2026-0002</span></td>
+                    <td class="text-muted">Sin registro</td>
+                    <td class="fw-semibold">Evaluación de gestión municipal 2026</td>
+                </tr>
+                
+                <tr>
+                    <td class="text-nowrap">11/09/2026</td>
+                    <td class="text-nowrap"><code>11:03:19</code></td>
+                    <td>ana.munoz</td>
+                    <td>Cambio de estado de evidencia</td>
+                    <td><span class="badge bg-light text-dark border">AUD-2026-0003</span></td>
+                    <td class="text-muted">Pendiente</td>
+                    <td class="fw-semibold">Aceptada</td>
+                </tr>
+                
+                <tr>
+                    <td class="text-nowrap">10/09/2026</td>
+                    <td class="text-nowrap"><code>14:47:55</code></td>
+                    <td>pedro.silva</td>
+                    <td>Edición de compromiso</td>
+                    <td><span class="badge bg-light text-dark border">AUD-2026-0004</span></td>
+                    <td class="text-muted">En proceso</td>
+                    <td class="fw-semibold">Realizado</td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    </div>
+
+    <footer class="bg-white text-center py-4 mt-5 border-top">
+        <div class="container text-muted">
+            <p class="mb-1">© 2026 Municipalidad de La Serena - Sistema de Gestión de Requerimientos (SGR)</p>
+            <small>Desarrollado de forma local para Programación Back End - Inacap La Serena</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle Local -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

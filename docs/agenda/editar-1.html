@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Compromiso 1</title>
+    <!-- Bootstrap CSS Local -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand img {
+            max-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Responsivo -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../static/img/logo_municipal.png" alt="Logo Municipalidad" class="me-2">
+                <span class="fw-bold">SGR La Serena</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../desempeno/index.html">Fichas de Desempeño</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-white rounded px-3" href="kanban.html">Tubo Kanban</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../social/casos.html">Atención Social (Casos)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../evidencias/index.html">Evidencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../metas/index.html">Configurar metas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../auditoria/index.html">Auditoría</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resumen-alcalde/index.html">Resumen alcalde</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        
+        
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h4 class="card-title my-0">Modificar Datos del Compromiso</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" onsubmit="return false;">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="zXaRnboDONjV7ggjz2RkSCciBnvht3zQ1zleIS4DtU7Qf4YrQf74790R2T3FaegY">
+                    <p>
+    <label for="id_vecino">Nombre del Vecino Solicitante:</label>
+    <input type="text" name="vecino" value="Manuel Rojas Espejo" class="form-control" placeholder="Ej. Juan Pérez" minlength="3" required id="id_vecino">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_telefono">Teléfono de Contacto:</label>
+    <input type="text" name="telefono" value="+56912345678" class="form-control" placeholder="Ej. +56912345678" required id="id_telefono">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_territorio">Territorio / Delegación:</label>
+    <select name="territorio" class="form-select" id="id_territorio">
+  <option value="Centro" selected>Centro</option>
+
+  <option value="Rural">Rural</option>
+
+  <option value="Las Compañías">Las Compañías</option>
+
+  <option value="La Pampa">La Pampa</option>
+
+  <option value="La Antena - La Florida">La Antena - La Florida</option>
+
+  <option value="Avenida del Mar">Avenida del Mar</option>
+
+</select>
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_descripcion">Descripción del Requerimiento:</label>
+    <textarea name="descripcion" cols="40" rows="3" class="form-control" placeholder="Explique claramente el compromiso..." minlength="10" required id="id_descripcion">
+Solicitud de retiro de escombros en calle Balmaceda altura 400 por interferencia peatonal.</textarea>
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_fecha_compromiso">Fecha Límite de Compromiso:</label>
+    <input type="date" name="fecha_compromiso" value="2026-09-10" class="form-control" required id="id_fecha_compromiso">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_responsable_id">Funcionario Responsable Asignado:</label>
+    <select name="responsable_id" class="form-select" id="id_responsable_id">
+  <option value="1">María Fonseca Palma</option>
+
+  <option value="2" selected>Alberto Barrientos</option>
+
+  <option value="3">Débora Cortés Rojas</option>
+
+</select>
+    
+    
+      
+    
+  </p>
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        <a href="kanban.html" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <footer class="bg-white text-center py-4 mt-5 border-top">
+        <div class="container text-muted">
+            <p class="mb-1">© 2026 Municipalidad de La Serena - Sistema de Gestión de Requerimientos (SGR)</p>
+            <small>Desarrollado de forma local para Programación Back End - Inacap La Serena</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle Local -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

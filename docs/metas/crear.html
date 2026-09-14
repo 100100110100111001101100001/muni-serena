@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear período | SGR La Serena</title>
+    <!-- Bootstrap CSS Local -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand img {
+            max-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Responsivo -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../static/img/logo_municipal.png" alt="Logo Municipalidad" class="me-2">
+                <span class="fw-bold">SGR La Serena</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../desempeno/index.html">Fichas de Desempeño</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-white rounded px-3" href="../agenda/kanban.html">Tubo Kanban</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../social/casos.html">Atención Social (Casos)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../evidencias/index.html">Evidencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Configurar metas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../auditoria/index.html">Auditoría</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resumen-alcalde/index.html">Resumen alcalde</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        
+        
+<div class="row justify-content-center">
+    <div class="col-12 col-xl-9">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <p class="text-primary fw-semibold mb-1">CONFIGURACIÓN DE METAS</p>
+                <h1 class="h2 mb-1">Crear período</h1>
+                <p class="text-muted mb-0">Asigna un nombre y agrega los ítems que medirás.</p>
+            </div>
+            <a class="btn btn-outline-secondary" href="index.html">Volver</a>
+        </div>
+
+        <form method="post" class="card shadow-sm border-0" onsubmit="return false;">
+            <input type="hidden" name="csrfmiddlewaretoken" value="Zx3UEKAZbxItnEN9hipJfD5MdnpTqXCsy3RQRdmPQ6eiCEWY6jkRxUAiVUqiZqdK">
+            <div class="card-body p-4">
+                <div class="mb-4">
+                    <label class="form-label fw-semibold" for="id_nombre">Nombre del período</label>
+                    <input type="text" name="nombre" class="form-control" placeholder="Ej. Evaluación anual 2026" maxlength="100" minlength="3" required id="id_nombre">
+                    
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h2 class="h5 mb-1">Ítems del período</h2>
+                        <p class="text-muted small mb-0">La ponderación se expresa como porcentaje y no puede superar el 100% en total.</p>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm" id="agregar-item">+ Agregar ítem</button>
+                </div>
+
+                <input type="hidden" name="form-TOTAL_FORMS" value="1" id="id_form-TOTAL_FORMS"><input type="hidden" name="form-INITIAL_FORMS" value="0" id="id_form-INITIAL_FORMS"><input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS"><input type="hidden" name="form-MAX_NUM_FORMS" value="1000" id="id_form-MAX_NUM_FORMS">
+                <div id="items-container">
+                    
+                    <div class="item-row border rounded p-3 mb-3">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-12 col-md-5">
+                                <label class="form-label small fw-semibold">Nombre del ítem</label>
+                                <input type="text" name="form-0-nombre" class="form-control" placeholder="Ej. Cumplimiento de compromisos" maxlength="120" minlength="3" id="id_form-0-nombre">
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label class="form-label small fw-semibold">Meta numérica</label>
+                                <input type="number" name="form-0-meta" class="form-control" placeholder="0" step="0.01" min="0" id="id_form-0-meta">
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label class="form-label small fw-semibold">Ponderación (%)</label>
+                                <input type="number" name="form-0-ponderacion" class="form-control" placeholder="0" step="0.01" min="0" max="100" id="id_form-0-ponderacion">
+                            </div>
+                            <div class="col-12 col-md-1 text-md-end">
+                                <input type="hidden" name="form-0-DELETE" id="id_form-0-DELETE">
+                                <button type="button" class="btn btn-outline-danger btn-sm quitar-item" title="Quitar ítem">Quitar</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div class="card-footer bg-white d-flex justify-content-end gap-2 p-3">
+                <a class="btn btn-light" href="index.html">Cancelar</a>
+                <button class="btn btn-primary" type="submit">Crear período</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<template id="item-vacio">
+    <div class="item-row border rounded p-3 mb-3">
+        <div class="row g-3 align-items-end">
+            <div class="col-12 col-md-5">
+                <label class="form-label small fw-semibold">Nombre del ítem</label>
+                <input type="text" name="form-__prefix__-nombre" class="form-control" placeholder="Ej. Cumplimiento de compromisos" maxlength="120" minlength="3" id="id_form-__prefix__-nombre">
+            </div>
+            <div class="col-6 col-md-3">
+                <label class="form-label small fw-semibold">Meta numérica</label>
+                <input type="number" name="form-__prefix__-meta" class="form-control" placeholder="0" step="0.01" min="0" id="id_form-__prefix__-meta">
+            </div>
+            <div class="col-6 col-md-3">
+                <label class="form-label small fw-semibold">Ponderación (%)</label>
+                <input type="number" name="form-__prefix__-ponderacion" class="form-control" placeholder="0" step="0.01" min="0" max="100" id="id_form-__prefix__-ponderacion">
+            </div>
+            <div class="col-12 col-md-1 text-md-end">
+                <input type="hidden" name="form-__prefix__-DELETE" id="id_form-__prefix__-DELETE">
+                <button type="button" class="btn btn-outline-danger btn-sm quitar-item">Quitar</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    const container = document.getElementById('items-container');
+    const totalForms = document.getElementById('id_form-TOTAL_FORMS');
+    const template = document.getElementById('item-vacio').innerHTML;
+
+    document.getElementById('agregar-item').addEventListener('click', () => {
+        container.insertAdjacentHTML('beforeend', template.replaceAll('__prefix__', totalForms.value));
+        totalForms.value = Number(totalForms.value) + 1;
+    });
+
+    container.addEventListener('click', (event) => {
+        if (!event.target.classList.contains('quitar-item')) return;
+        const row = event.target.closest('.item-row');
+        const deleteField = row.querySelector('input[name$="-DELETE"]');
+        if (deleteField) deleteField.value = 'on';
+        row.remove();
+    });
+</script>
+
+    </div>
+
+    <footer class="bg-white text-center py-4 mt-5 border-top">
+        <div class="container text-muted">
+            <p class="mb-1">© 2026 Municipalidad de La Serena - Sistema de Gestión de Requerimientos (SGR)</p>
+            <small>Desarrollado de forma local para Programación Back End - Inacap La Serena</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle Local -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

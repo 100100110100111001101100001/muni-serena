@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Héctor Valenzuela</title>
+    <!-- Bootstrap CSS Local -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand img {
+            max-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Responsivo -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../static/img/logo_municipal.png" alt="Logo Municipalidad" class="me-2">
+                <span class="fw-bold">SGR La Serena</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../desempeno/index.html">Fichas de Desempeño</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-white rounded px-3" href="../agenda/kanban.html">Tubo Kanban</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="casos.html">Atención Social (Casos)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../evidencias/index.html">Evidencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../metas/index.html">Configurar metas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../auditoria/index.html">Auditoría</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resumen-alcalde/index.html">Resumen alcalde</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        
+        
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h3>Historial del Caso: Héctor Valenzuela</h3>
+        <p class="mb-1"><strong>RUT:</strong> 12.345.678-9</p>
+        <p class="mb-1"><strong>Dirección:</strong> Sectores Altos de La Antena</p>
+        <p class="mb-3"><strong>Contacto:</strong> +56955554444</p>
+
+        <h4 class="mt-4">Gestiones Realizadas (2 de un máximo de 3)</h4>
+        <div class="timeline mt-3">
+            
+            <div class="card mb-3 border-start border-4 border-success">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="badge bg-success">Etapa 1</span>
+                        <span class="text-muted small"><strong>Fecha Registro:</strong> 2026-07-15</span>
+                    </div>
+                    <p class="mb-1"><strong>Servicio:</strong> Evaluación preliminar de vulnerabilidad y ficha CAS</p>
+                    <p class="mb-1"><strong>Observación:</strong> Se diagnostica urgencia de subsidio habitacional.</p>
+                    <p class="mb-0"><strong>Estado:</strong> <span class="badge bg-info">Completado</span></p>
+                </div>
+            </div>
+            
+            <div class="card mb-3 border-start border-4 border-success">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="badge bg-success">Etapa 2</span>
+                        <span class="text-muted small"><strong>Fecha Registro:</strong> 2026-08-01</span>
+                    </div>
+                    <p class="mb-1"><strong>Servicio:</strong> Asesoría para postulación de subsidios estatales</p>
+                    <p class="mb-1"><strong>Observación:</strong> Se asiste con entrega de documentos oficiales y cartas de respaldo.</p>
+                    <p class="mb-0"><strong>Estado:</strong> <span class="badge bg-info">Completado</span></p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card border-dark">
+            <div class="card-header bg-dark text-white">Ingresar Próxima Gestión</div>
+            <div class="card-body">
+                
+                <p class="text-muted small">Al registrar una atención, se añadirá automáticamente como la <strong>etapa 3</strong> vinculada a este caso.</p>
+                <form action="#" method="POST" onsubmit="return false;">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="8Kg2kMbcH1snrPkQwSj1lAv13J7rIGqB53p3KGp9lWArJvi17tvAxS6dnxZALzIN">
+                    <p>
+    <label for="id_servicio">Servicio o Ayuda Solicitada:</label>
+    <input type="text" name="servicio" class="form-control" placeholder="Ej. Canasta de alimentos..." required id="id_servicio">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_observacion">Observación Técnica / Seguimiento:</label>
+    <textarea name="observacion" cols="40" rows="3" class="form-control" required id="id_observacion">
+</textarea>
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_resultado">Estatus del Logro:</label>
+    <select name="resultado" class="form-select" id="id_resultado">
+  <option value="Pendiente">Pendiente</option>
+
+  <option value="Completado">Completado</option>
+
+</select>
+    
+    
+      
+    
+  </p>
+                    <button type="submit" class="btn btn-success w-100 mt-2">Guardar Gestión</button>
+                </form>
+                
+                <hr>
+                <a href="casos.html" class="btn btn-outline-secondary w-100">Volver a la Lista de Casos</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <footer class="bg-white text-center py-4 mt-5 border-top">
+        <div class="container text-muted">
+            <p class="mb-1">© 2026 Municipalidad de La Serena - Sistema de Gestión de Requerimientos (SGR)</p>
+            <small>Desarrollado de forma local para Programación Back End - Inacap La Serena</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle Local -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

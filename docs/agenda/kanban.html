@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tubo de Trabajo Kanban - SGR</title>
+    <!-- Bootstrap CSS Local -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand img {
+            max-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Responsivo -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../static/img/logo_municipal.png" alt="Logo Municipalidad" class="me-2">
+                <span class="fw-bold">SGR La Serena</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../desempeno/index.html">Fichas de Desempeño</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-white rounded px-3" href="kanban.html">Tubo Kanban</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../social/casos.html">Atención Social (Casos)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../evidencias/index.html">Evidencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../metas/index.html">Configurar metas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../auditoria/index.html">Auditoría</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resumen-alcalde/index.html">Resumen alcalde</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        
+        
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8">
+        <h3>Agenda Colectiva: Tubo de Trabajo de La Serena</h3>
+        <p class="text-muted">Gestión de compromisos adquiridos con vecinos. Simulación interactiva de tablero Kanban.</p>
+    </div>
+    <div class="col-md-4 text-md-end">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrear">
+            Crear Compromiso Vecinal
+        </button>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                    <strong>Cumplimiento de Compromisos de la Delegación:</strong>
+                    <span class="fw-bold">0,0% (Mínimo exigido: 80%)</span>
+                </div>
+                <div class="progress" style="height: 25px;">
+                    <div class="progress-bar bg-danger"
+                         role="progressbar" style="width: 0,0%;">
+                        0,0%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card bg-light border-secondary h-100">
+            <div class="card-header bg-secondary text-white fw-bold">1. INGRESADO (1)</div>
+            <div class="card-body p-2">
+                
+                    <div class="card mb-2 shadow-sm">
+    <div class="card-body p-3">
+        <div class="d-flex justify-content-between mb-1">
+            <span class="badge bg-dark">COMP-2</span>
+            <span class="text-muted small fw-bold">Rural</span>
+        </div>
+        <h6 class="card-title fw-bold mb-1">Clara Contreras</h6>
+        <p class="card-text text-muted small mb-2" style="font-size: 0.85rem;">Solicitud de camión aljibe para sector El Romero por baja de presión severa.</p>
+
+        <div class="border-top pt-2 mt-2" style="font-size: 0.8rem;">
+            <div><strong>Contacto:</strong> +56987654321</div>
+            <div><strong>Asignado:</strong> María Fonseca Palma</div>
+            <div class="text-danger"><strong>Límite:</strong> 2026-09-15</div>
+        </div>
+
+        <!-- Acciones Rápidas (CRUD) -->
+        <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
+            <form action="#" method="POST" class="d-inline-block" onsubmit="return false;">
+                <input type="hidden" name="csrfmiddlewaretoken" value="BwmcMQ34etotcZh7Mq0jJMJlYTUm6qy0swpsyakRKaZZHf86wKAhSOPfspnefU6Z">
+                <select name="estado" class="form-select form-select-sm" style="width: auto; font-size: 0.75rem;" onchange="this.form.submit()">
+                    <option value="Ingresado" selected>Mover a Ingresado</option>
+                    <option value="Pendiente" >Mover a Pendiente</option>
+                    <option value="En Proceso" >Mover a En Proceso</option>
+                    <option value="Realizado" >Mover a Realizado</option>
+                </select>
+            </form>
+            <div>
+                <a href="editar-2.html" class="btn btn-link btn-sm p-0 me-2 text-decoration-none" title="Editar">Editar</a>
+                <a href="#" class="btn btn-link btn-sm p-0 text-danger text-decoration-none" onclick="return confirm('¿Seguro que deseas eliminar este compromiso?')" title="Eliminar">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-light border-warning h-100">
+            <div class="card-header bg-warning text-dark fw-bold">2. PENDIENTE (0)</div>
+            <div class="card-body p-2">
+                
+                    <p class="text-muted small text-center my-3">Sin tareas pendientes.</p>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-light border-primary h-100">
+            <div class="card-header bg-primary text-white fw-bold">3. EN PROCESO (1)</div>
+            <div class="card-body p-2">
+                
+                    <div class="card mb-2 shadow-sm">
+    <div class="card-body p-3">
+        <div class="d-flex justify-content-between mb-1">
+            <span class="badge bg-dark">COMP-1</span>
+            <span class="text-muted small fw-bold">Centro</span>
+        </div>
+        <h6 class="card-title fw-bold mb-1">Manuel Rojas Espejo</h6>
+        <p class="card-text text-muted small mb-2" style="font-size: 0.85rem;">Solicitud de retiro de escombros en calle Balmaceda altura 400 por interferencia peatonal.</p>
+
+        <div class="border-top pt-2 mt-2" style="font-size: 0.8rem;">
+            <div><strong>Contacto:</strong> +56912345678</div>
+            <div><strong>Asignado:</strong> Alberto Barrientos</div>
+            <div class="text-danger"><strong>Límite:</strong> 2026-09-10</div>
+        </div>
+
+        <!-- Acciones Rápidas (CRUD) -->
+        <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
+            <form action="#" method="POST" class="d-inline-block" onsubmit="return false;">
+                <input type="hidden" name="csrfmiddlewaretoken" value="BwmcMQ34etotcZh7Mq0jJMJlYTUm6qy0swpsyakRKaZZHf86wKAhSOPfspnefU6Z">
+                <select name="estado" class="form-select form-select-sm" style="width: auto; font-size: 0.75rem;" onchange="this.form.submit()">
+                    <option value="Ingresado" >Mover a Ingresado</option>
+                    <option value="Pendiente" >Mover a Pendiente</option>
+                    <option value="En Proceso" selected>Mover a En Proceso</option>
+                    <option value="Realizado" >Mover a Realizado</option>
+                </select>
+            </form>
+            <div>
+                <a href="editar-1.html" class="btn btn-link btn-sm p-0 me-2 text-decoration-none" title="Editar">Editar</a>
+                <a href="#" class="btn btn-link btn-sm p-0 text-danger text-decoration-none" onclick="return confirm('¿Seguro que deseas eliminar este compromiso?')" title="Eliminar">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-light border-success h-100">
+            <div class="card-header bg-success text-white fw-bold">4. REALIZADO (0)</div>
+            <div class="card-body p-2">
+                
+                    <p class="text-muted small text-center my-3">Sin tareas finalizadas.</p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCrear" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="modalCrearLabel">Registrar Nuevo Compromiso</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="#" method="POST" onsubmit="return false;">
+          <input type="hidden" name="csrfmiddlewaretoken" value="BwmcMQ34etotcZh7Mq0jJMJlYTUm6qy0swpsyakRKaZZHf86wKAhSOPfspnefU6Z">
+          <div class="modal-body">
+              <p>
+    <label for="id_vecino">Nombre del Vecino Solicitante:</label>
+    <input type="text" name="vecino" class="form-control" placeholder="Ej. Juan Pérez" minlength="3" required id="id_vecino">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_telefono">Teléfono de Contacto:</label>
+    <input type="text" name="telefono" class="form-control" placeholder="Ej. +56912345678" required id="id_telefono">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_territorio">Territorio / Delegación:</label>
+    <select name="territorio" class="form-select" id="id_territorio">
+  <option value="Centro">Centro</option>
+
+  <option value="Rural">Rural</option>
+
+  <option value="Las Compañías">Las Compañías</option>
+
+  <option value="La Pampa">La Pampa</option>
+
+  <option value="La Antena - La Florida">La Antena - La Florida</option>
+
+  <option value="Avenida del Mar">Avenida del Mar</option>
+
+</select>
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_descripcion">Descripción del Requerimiento:</label>
+    <textarea name="descripcion" cols="40" rows="3" class="form-control" placeholder="Explique claramente el compromiso..." minlength="10" required id="id_descripcion">
+</textarea>
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_fecha_compromiso">Fecha Límite de Compromiso:</label>
+    <input type="date" name="fecha_compromiso" class="form-control" required id="id_fecha_compromiso">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_responsable_id">Funcionario Responsable Asignado:</label>
+    <select name="responsable_id" class="form-select" id="id_responsable_id">
+  <option value="1">María Fonseca Palma</option>
+
+  <option value="2">Alberto Barrientos</option>
+
+  <option value="3">Débora Cortés Rojas</option>
+
+</select>
+    
+    
+      
+    
+  </p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-success">Registrar en Kanban</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer class="bg-white text-center py-4 mt-5 border-top">
+        <div class="container text-muted">
+            <p class="mb-1">© 2026 Municipalidad de La Serena - Sistema de Gestión de Requerimientos (SGR)</p>
+            <small>Desarrollado de forma local para Programación Back End - Inacap La Serena</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle Local -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
